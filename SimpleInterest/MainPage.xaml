@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimpleInterest.MainPage"
+             BackgroundImage="Grass.jpg">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Simple Interest Calculator" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <ScrollView>
+            <StackLayout>
+                <Frame Padding="10,5" HasShadow="True"   CornerRadius="40" BackgroundColor="Azure" BorderColor="#2196F3" Margin="40,30,40,10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40">
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Entry x:Name="Principal" Grid.Column="1" HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing"
+                                 HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                            Placeholder="Enter Principal Amount"   PlaceholderColor="#2196F3"
+                                  FontSize="Medium" Keyboard="Numeric"
+                               TextColor="Green">
+                        </Entry>
+                    </Grid>
+                </Frame>
+                <Frame Padding="10,5" HasShadow="True"   CornerRadius="40" BackgroundColor="Azure" BorderColor="#2196F3"  Margin="40,30,40,10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40">
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Entry Grid.Column="1" HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing"
+                                 HorizontalOptions="FillAndExpand" PlaceholderColor="#2196F3"
+                           Keyboard="Numeric" VerticalOptions="Center"
+                            Placeholder="Enter Interest Rate" x:Name="Interest"
+                                  FontSize="Medium"
+                               TextColor="Green" >
+                        </Entry>
+                    </Grid>
+                </Frame>
+                <Frame Padding="10,5" HasShadow="True"   CornerRadius="40" BackgroundColor="Azure" BorderColor="#2196F3"  Margin="40,30,40,10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40">
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Entry  Grid.Column="1"    HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing"
+                            Placeholder="Enter Time in months" Keyboard="Numeric" x:Name="months"
+                                  FontSize="Medium" PlaceholderColor="#2196F3"
+                               TextColor="Green">
+                        </Entry>
+                    </Grid>
+                </Frame>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Button x:Name="Calculate_btn" Clicked="Calculate_btn_Clicked"  BackgroundColor="#2196F3" Grid.ColumnSpan="2" Text="Calculate" VerticalOptions="EndAndExpand" CornerRadius="40"  Margin="0,40,0,0" FontSize="Large" FontAttributes="Bold" TextColor="#FFFFFF" Padding ="15" TextTransform="Uppercase"  >
+                        <Button.Effects>
+                            <NullEffect/>
+                        </Button.Effects>
+                    </Button>
+                    <Button x:Name="Clear_btn" Command="{Binding ClearInput}" Clicked="Clear_btn_Clicked"  BackgroundColor="Red" Grid.Column="2"  Text="Clear" VerticalOptions="EndAndExpand" CornerRadius="40"  Margin="0,40,0,0" FontSize="Large" FontAttributes="Bold" TextColor="#FFFFFF" Padding ="15" TextTransform="Uppercase" >
+                        <Button.Effects>
+                            <NullEffect/>
+                        </Button.Effects>
+                    </Button>
+                </Grid>
+
+                <Label x:Name="Total_amt_lbl" Text="Total Amount" FontSize="Large" TextColor="DeepPink" Margin="130,20,0,0" IsVisible="False">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Calculate_btn_Clicked}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Frame IsVisible="false" x:Name="Frame_amt" Padding="10" HasShadow="True"  BackgroundColor="Azure" CornerRadius="40"  BorderColor="#2196F3"  Margin="40,30,40,10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40">
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="Total_amount" Grid.Column="1" HorizontalTextAlignment="Center"
+                                 HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                                  FontSize="Medium"
+                               TextColor="Black" IsVisible="false" >
+                        </Label>
+                    </Grid>
+                </Frame>
+                <Label x:Name="Total_int_lbl" Text="Total Interest" FontSize="Large" TextColor="DeepPink" Margin="130,20,0,0" IsVisible="False">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Calculate_btn_Clicked}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Frame x:Name="Frame_int" Padding="10" HasShadow="True" BackgroundColor="Azure"  CornerRadius="40"  BorderColor="#2196F3"  Margin="40,30,40,10" IsVisible="false">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40">
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="Total_interest" Grid.Column="1" HorizontalTextAlignment="Center" 
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 FontSize="Medium"
+                                 TextColor="Black" IsVisible="false" >
+                        </Label>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>
